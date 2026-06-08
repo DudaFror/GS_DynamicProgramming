@@ -77,6 +77,39 @@ class BinarySearchTree:
 
         return max(left_height, right_height) + 1
 
+    def search_range(self, min_risk, max_risk):
+        result = []
+        self._search_range(self.root, min_risk, max_risk, result)
+        return result
+
+
+    def _search_range(self, node, min_risk, max_risk, result):
+
+        if node is None:
+            return
+
+        risk = node.municipality[2]
+
+        if min_risk <= risk <= max_risk:
+            result.append(node.municipality)
+
+        if risk > min_risk:
+            self._search_range(
+                node.left,
+                min_risk,
+                max_risk,
+                result
+            )
+
+        if risk < max_risk:
+            self._search_range(
+                node.right,
+                min_risk,
+                max_risk,
+                result
+            )
+
+# Testes
 if __name__ == "__main__":
 
     bst = BinarySearchTree()
@@ -91,3 +124,8 @@ if __name__ == "__main__":
         print(municipio)
     
     print(f"\nAltura da árvore: {bst.height()}")
+
+    print("\nMunicipios com risco entre 0.70 e 1.00:")
+
+    for municipio in bst.search_range(0.70, 1.00):
+        print(municipio)
