@@ -20,10 +20,44 @@ class Graph:
         for vertex, neighbors in self.graph.items():
             print(f"{vertex} -> {neighbors}")
 
+class Node:
+    def __init__(self, municipality):
+        self.municipality = municipality
+        self.left = None
+        self.right = None
+
+
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, municipality):
+        if self.root is None:
+            self.root = Node(municipality)
+        else:
+            self._insert(self.root, municipality)
+
+    def _insert(self, current, municipality):
+        risk = municipality[2]
+
+        if risk < current.municipality[2]:
+            if current.left is None:
+                current.left = Node(municipality)
+            else:
+                self._insert(current.left, municipality)
+
+        else:
+            if current.right is None:
+                current.right = Node(municipality)
+            else:
+                self._insert(current.right, municipality)
+
 if __name__ == "__main__":
-    g = Graph()
 
-    g.add_edge("Manaus", "Itacoatiara", 150)
-    g.add_edge("Manaus", "Parintins", 350)
+    bst = BinarySearchTree()
 
-    g.display()
+    bst.insert((1, "Manaus", 0.92, 120, 2200000))
+    bst.insert((2, "Tefe", 0.60, 80, 65000))
+    bst.insert((3, "Coari", 0.75, 90, 90000))
+
+    print("BST criada com sucesso!")
