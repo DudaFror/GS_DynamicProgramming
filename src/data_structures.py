@@ -51,6 +51,18 @@ class BinarySearchTree:
                 current.right = Node(municipality)
             else:
                 self._insert(current.right, municipality)
+    
+    def in_order(self):
+        result = []
+        self._in_order(self.root, result)
+        return result
+
+
+    def _in_order(self, node, result):
+        if node is not None:
+            self._in_order(node.left, result)
+            result.append(node.municipality)
+            self._in_order(node.right, result)
 
 if __name__ == "__main__":
 
@@ -60,4 +72,7 @@ if __name__ == "__main__":
     bst.insert((2, "Tefe", 0.60, 80, 65000))
     bst.insert((3, "Coari", 0.75, 90, 90000))
 
-    print("BST criada com sucesso!")
+    print("\nMunicipios ordenados por risco:")
+
+    for municipio in bst.in_order():
+        print(municipio)
