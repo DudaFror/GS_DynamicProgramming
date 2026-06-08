@@ -64,6 +64,19 @@ class BinarySearchTree:
             result.append(node.municipality)
             self._in_order(node.right, result)
 
+    def height(self):
+        return self._height(self.root)
+
+    def _height(self, node):
+
+        if node is None:
+            return 0
+
+        left_height = self._height(node.left)
+        right_height = self._height(node.right)
+
+        return max(left_height, right_height) + 1
+
 if __name__ == "__main__":
 
     bst = BinarySearchTree()
@@ -76,3 +89,5 @@ if __name__ == "__main__":
 
     for municipio in bst.in_order():
         print(municipio)
+    
+    print(f"\nAltura da árvore: {bst.height()}")
