@@ -109,6 +109,72 @@ class BinarySearchTree:
                 result
             )
 
+    def remove(self, risk):
+        self.root = self._remove(
+            self.root,
+            risk
+        )
+
+    def _remove(
+        self,
+        node,
+        risk
+    ):
+
+        if node is None:
+            return None
+
+        current_risk = node.municipality[2]
+
+        if risk < current_risk:
+
+            node.left = self._remove(
+                node.left,
+                risk
+            )
+
+        elif risk > current_risk:
+
+            node.right = self._remove(
+                node.right,
+                risk
+            )
+
+        else:
+
+            # Sem filhos
+
+            if node.left is None:
+                return node.right
+
+            if node.right is None:
+                return node.left
+
+            successor = self._find_min(
+                node.right
+            )
+
+            node.municipality = (
+                successor.municipality
+            )
+
+            node.right = self._remove(
+                node.right,
+                successor.municipality[2]
+            )
+
+        return node
+    
+    def _find_min(
+        self,
+        node
+    ):
+
+        while node.left is not None:
+            node = node.left
+
+        return node
+
 # Testes
 if __name__ == "__main__":
 
