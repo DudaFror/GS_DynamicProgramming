@@ -9,7 +9,6 @@ df = pd.read_csv(
 sizes = df["N"]
 
 dijkstra_times = df["Dijkstra(ms)"]
-
 brute_force_times = []
 
 for value in df["BruteForce(ms)"]:
