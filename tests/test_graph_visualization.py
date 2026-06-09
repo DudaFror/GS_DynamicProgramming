@@ -9,3 +9,4 @@ graph.add_edge("Manaus", "Tefe", 15)
 graph.add_edge("Coari", "Tefe", 5)
 
 plot_graph(graph)
+

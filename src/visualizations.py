@@ -46,3 +46,41 @@ def plot_graph(graph):
     )
 
     plt.show()
+
+    def plot_execution_times(
+        sizes,
+        brute_force_times,
+        dijkstra_times
+    ):
+
+        plt.figure(figsize=(10, 6))
+
+        plt.plot(
+            sizes,
+            brute_force_times,
+            marker="o",
+            label="Força Bruta"
+        )
+
+        plt.plot(
+            sizes,
+            dijkstra_times,
+            marker="o",
+            label="Dijkstra"
+        )
+
+        plt.xlabel("Número de vértices")
+
+        plt.ylabel(
+            "Tempo (ms)"
+        )
+
+        plt.title(
+            "Tempo de Execução x Número de Vértices"
+        )
+
+        plt.legend()
+
+        plt.grid(True)
+
+        plt.show()
