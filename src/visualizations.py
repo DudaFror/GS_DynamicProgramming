@@ -84,3 +84,32 @@ def plot_graph(graph):
         plt.grid(True)
 
         plt.show()
+
+    def plot_gap(
+        sizes,
+        gap_values
+    ):
+
+        plt.figure(figsize=(10, 6))
+
+        plt.plot(
+            sizes,
+            gap_values,
+            marker="o"
+        )
+
+        plt.title(
+            "Gap de Otimalidade"
+        )
+
+        plt.xlabel(
+            "Número de vértices"
+        )
+
+        plt.ylabel(
+            "Gap (%)"
+        )
+
+        plt.grid(True)
+
+        plt.show()
