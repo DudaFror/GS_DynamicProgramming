@@ -26,27 +26,28 @@ class PerformanceMonitor:
             ) * 1000,
             "peak_memory_kb": peak_memory / 1024
         }
-    
-    def compare_algorithms(
-        brute_force,
-        dijkstra,
+
+
+def compare_algorithms(
+    brute_force,
+    dijkstra,
+    start,
+    end
+):
+
+    brute_metrics = PerformanceMonitor.measure(
+        brute_force.find_best_path,
         start,
         end
-    ):
+    )
 
-        brute_metrics = PerformanceMonitor.measure(
-            brute_force.find_best_path,
-            start,
-            end
-        )
+    dijkstra_metrics = PerformanceMonitor.measure(
+        dijkstra.shortest_path,
+        start,
+        end
+    )
 
-        dijkstra_metrics = PerformanceMonitor.measure(
-            dijkstra.shortest_path,
-            start,
-            end
-        )
-
-        return {
-            "brute_force": brute_metrics,
-            "dijkstra": dijkstra_metrics
-        }
+    return {
+        "brute_force": brute_metrics,
+        "dijkstra": dijkstra_metrics
+    }
