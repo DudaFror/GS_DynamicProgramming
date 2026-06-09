@@ -59,3 +59,13 @@ if __name__ == "__main__":
     graph = generate_graph(5)
 
     graph.display()
+
+TEST_SIZES = [
+    5,
+    8,
+    10,
+    12,
+    20,
+    50,
+    100
+]
